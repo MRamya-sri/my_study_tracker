@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ramya · Mastery Tracker</title>
+  <meta name="description" content="A 4-track learning planner — Data Analyst, Data Scientist, ML Engineer, AI Engineer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500&family=General+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ambient background layers -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid-overlay"></div>
+    <div class="grain"></div>
+  </div>
+
+  <main class="container">
+    <!-- ========== HEADER ========== -->
+    <header class="hero">
+      <div class="hero-meta">
+        <span class="hero-tag">private · personal · daily</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="serif-i">M</span>astery
+        <span class="hero-amp">·</span>
+        <span class="serif-i">T</span>racker
+      </h1>
+      <p class="hero-sub">
+        Four tracks. One commitment.
+        <span class="hero-divider">·</span>
+        Data Analyst, Data Scientist, ML Engineer, AI Engineer.
+      </p>
+    </header>
+
+    <!-- ========== STATS DASHBOARD ========== -->
+    <section class="stats-dashboard" aria-label="Progress overview">
+      <div class="stats-grid">
+        <!-- Big circular progress -->
+        <div class="stat-card stat-card-hero">
+          <div class="progress-ring-wrap">
+            <svg class="progress-ring" viewBox="0 0 200 200" aria-hidden="true">
+              <defs>
+                <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#AFA9EC" />
+                  <stop offset="100%" stop-color="#7F77DD" />
+                </linearGradient>
+                <filter id="ringGlow">
+                  <feGaussianBlur stdDeviation="2.5" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <circle cx="100" cy="100" r="84" class="ring-track" />
+              <circle
+                cx="100"
+                cy="100"
+                r="84"
+                class="ring-fill"
+                id="overallRing"
+                filter="url(#ringGlow)"
+              />
+            </svg>
+            <div class="progress-ring-text">
+              <div class="ring-pct" id="overallPct">0%</div>
+              <div class="ring-label">total mastered</div>
+            </div>
+          </div>
+          <div class="stat-card-meta" id="overallMeta">0 of 0 topics</div>
+        </div>
+
+        <!-- 4 small role progress cards -->
+        <div class="stat-card stat-card-da" data-role="da">
+          <div class="role-stat-header">
+            <span class="role-stat-dot"></span>
+            <span class="role-stat-name">Data Analyst</span>
+          </div>
+          <div class="role-stat-bar">
+            <div class="role-stat-bar-fill" id="bar-da"></div>
+          </div>
+          <div class="role-stat-numbers">
+            <span class="role-stat-pct" id="pct-da">0%</span>
+            <span class="role-stat-count" id="count-da">0/0</span>
+          </div>
+        </div>
+
+        <div class="stat-card stat-card-ds" data-role="ds">
+          <div class="role-stat-header">
+            <span class="role-stat-dot"></span>
+            <span class="role-stat-name">Data Scientist</span>
+          </div>
+          <div class="role-stat-bar">
+            <div class="role-stat-bar-fill" id="bar-ds"></div>
+          </div>
+          <div class="role-stat-numbers">
+            <span class="role-stat-pct" id="pct-ds">0%</span>
+            <span class="role-stat-count" id="count-ds">0/0</span>
+          </div>
+        </div>
+
+        <div class="stat-card stat-card-ml" data-role="ml">
+          <div class="role-stat-header">
+            <span class="role-stat-dot"></span>
+            <span class="role-stat-name">ML Engineer</span>
+          </div>
+          <div class="role-stat-bar">
+            <div class="role-stat-bar-fill" id="bar-ml"></div>
+          </div>
+          <div class="role-stat-numbers">
+            <span class="role-stat-pct" id="pct-ml">0%</span>
+            <span class="role-stat-count" id="count-ml">0/0</span>
+          </div>
+        </div>
+
+        <div class="stat-card stat-card-ai" data-role="ai">
+          <div class="role-stat-header">
+            <span class="role-stat-dot"></span>
+            <span class="role-stat-name">AI Engineer</span>
+          </div>
+          <div class="role-stat-bar">
+            <div class="role-stat-bar-fill" id="bar-ai"></div>
+          </div>
+          <div class="role-stat-numbers">
+            <span class="role-stat-pct" id="pct-ai">0%</span>
+            <span class="role-stat-count" id="count-ai">0/0</span>
+          </div>
+        </div>
+
+        <!-- streak + days -->
+        <div class="stat-card stat-card-streak">
+          <div class="streak-flame" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <path
+                d="M12 2c-.7 4-3.5 5-3.5 9 0 1.7 1 3 2.5 3.5C10 17 8.5 18 8.5 19.5 8.5 21 9.5 22 12 22s5-1.5 5-4.5c0-2-2-3-3-4 1.5-1 3-2.5 3-5C17 5 14 4 12 2z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+          <div class="streak-numbers">
+            <div class="streak-big" id="streakBig">0</div>
+            <div class="streak-label">day streak</div>
+          </div>
+          <div class="streak-total" id="streakTotal">0 days studied</div>
+        </div>
+      </div>
+
+      <!-- 28-day calendar grid -->
+      <div class="calendar-block">
+        <div class="calendar-header">
+          <h3>Last 28 days</h3>
+          <button class="btn btn-primary btn-sm" id="markTodayBtn">
+            <span class="btn-dot"></span> I studied today
+          </button>
+        </div>
+        <div class="calendar-grid" id="calendarGrid"></div>
+      </div>
+    </section>
+
+    <!-- ========== QUOTE OF THE DAY ========== -->
+    <section class="quote-card">
+      <div class="quote-mark">"</div>
+      <blockquote id="quoteText">Loading...</blockquote>
+      <cite id="quoteAuthor">—</cite>
+    </section>
+
+    <!-- ========== ACTION BAR ========== -->
+    <div class="action-bar">
+      <button class="btn btn-ghost" id="expandAllBtn">⊕ Expand all</button>
+      <button class="btn btn-ghost" id="collapseAllBtn">⊖ Collapse all</button>
+      <button class="btn btn-ghost" id="exportBtn">↓ Export progress</button>
+      <button class="btn btn-ghost" id="importBtn">↑ Import progress</button>
+      <button class="btn btn-ghost btn-danger" id="resetBtn">⟲ Reset all</button>
+    </div>
+
+    <!-- ========== ROLE TRACKS ========== -->
+    <section class="tracks" id="tracks" aria-label="Role learning tracks">
+      <!-- populated by app.js -->
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+      <p>
+        Your progress saves automatically in this browser.
+        <br />
+        Built for Ramya · 2026 · with intention.
+      </p>
+    </footer>
+  </main>
+
+  <!-- Hidden file input for import -->
+  <input type="file" id="importFile" accept="application/json" hidden />
+
+  <script src="data/curriculum.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
